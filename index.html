@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng 20/11 - Gửi cô/mẹ Hải</title>
+  <style>
+    :root{
+      --accent-1:#ff5fa2;
+      --accent-2:#7a5cff;
+      --accent-3:#ffb86b;
+      --accent-4:#38d39f;
+      --glass-bg: rgba(255,255,255,0.12);
+      --card-width: min(920px, 94%);
+      --glass-border: rgba(255,255,255,0.25);
+    }
+
+    /* Page background - animated multicolor gradient */
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background:linear-gradient(120deg, #ffdede, #ffe7a8, #d6f7ff, #f6e8ff);
+      background-size: 800% 800%;
+      animation: gradientShift 18s ease infinite;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#0b1020;
+    }
+
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      25%{background-position:50% 100%}
+      50%{background-position:100% 50%}
+      75%{background-position:50% 0%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Decorative ribbons top-left + bottom-right */
+    .ribbon {
+      pointer-events:none;
+      position:fixed;
+      z-index:2;
+      width:320px;
+      height:160px;
+      mix-blend-mode:overlay;
+      filter: blur(.6px) saturate(120%);
+      opacity:0.95;
+    }
+    .ribbon.top { top:-40px; left:-40px; transform: rotate(-18deg); background: linear-gradient(45deg,var(--accent-1),var(--accent-2)); border-radius:22px; box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+    .ribbon.bottom { bottom:-40px; right:-40px; transform: rotate(12deg); background: linear-gradient(45deg,var(--accent-3),var(--accent-4)); border-radius:22px; box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+
+    /* Main card */
+    .card {
+      position:relative;
+      z-index:5;
+      width:var(--card-width);
+      max-width:1100px;
+      padding:30px;
+      border-radius:18px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:24px;
+      align-items:stretch;
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.45));
+      box-shadow: 0 10px 50px rgba(12,14,20,0.14);
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(10px) saturate(120%);
+      overflow:hidden;
+    }
+
+    /* Left area text */
+    .main {
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .title {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin:0 0 8px 0;
+      font-size:26px;
+      font-weight:700;
+      color: #222;
+      letter-spacing:0.2px;
+    }
+    .subtitle{
+      margin:0 0 18px 0;
+      color:#3b3f53;
+      font-weight:600;
+      font-size:15px;
+    }
+
+    /* Message block */
+    .message {
+      background: linear-gradient(90deg, rgba(255,255,255,0.00), rgba(255,255,255,0.02));
+      padding:18px;
+      border-radius:12px;
+      border:1px dashed rgba(0,0,0,0.04);
+      color:#111;
+      font-size:18px;
+      line-height:1.6;
+      box-shadow: inset 0 1px 0 rgba(235, 85, 85, 0.4);
+    }
+
+    .dynamic {
+      color:var(--accent-1);
+      font-weight:800;
+      font-size:20px;
+      display:inline-block;
+      min-width:170px;
+      margin-left:8px;
+      transform-origin:center;
+      letter-spacing:0.2px;
+    }
+
+    /* Right column - visual */
+    .visual {
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      border-left: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .portrait {
+      width:190px;
+      height:190px;
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      font-weight:700;
+      color:#fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* colorful ring around portrait */
+    .portrait::before{
+      content:"";
+      position:absolute;
+      inset:-6px;
+      border-radius:20px;
+      padding:6px;
+      background: conic-gradient(from 120deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-4), var(--accent-1));
+      -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+      mask-composite: exclude;
+      mask: 
+        radial-gradient(farthest-side, transparent calc(100% - 12px), black calc(100% - 11px));
+      opacity:0.95;
+      filter: blur(4px) saturate(120%);
+    }
+
+    .controls {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:4px;
+    }
+    .btn {
+      border: none;
+      padding:10px 14px;
+      font-weight:600;
+      border-radius:10px;
+      cursor:pointer;
+      background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      box-shadow: 0 6px 18px rgba(12,14,20,0.06);
+      transition: transform .14s ease, box-shadow .14s;
+    }
+    .btn.primary { background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:rgb(150, 116, 222); box-shadow: 0 8px 26px rgba(122,92,255,0.18); }
+    .btn.ghost { background: transparent; border:1px solid rgba(0,0,0,0.06); }
+
+    .btn:active { transform: translateY(2px); }
+
+    /* small helpers and footer note */
+    .note { font-size:13px; color:#444; margin-top:12px; text-align:center; }
+
+    /* responsiveness */
+    @media (max-width:900px){
+      .card { grid-template-columns: 1fr; padding:18px; gap:18px; }
+      .visual { border-left: none; border-top:1px solid rgba(0,0,0,0.04); padding-top:18px; }
+      .portrait { margin:0 auto; }
+    }
+
+    /* floating hearts (absolute) */
+    .heart {
+      position:fixed;
+      pointer-events:none;
+      z-index:7;
+      font-size:18px;
+      transform: translateY(0) scale(1);
+      animation: heartFloat 3.6s ease forwards;
+      will-change: transform, opacity;
+    }
+    @keyframes heartFloat{
+      0% { transform: translateY(0) scale(0.9); opacity:1; }
+      70% { transform: translateY(-30vh) scale(1.1); opacity:0.9; }
+      100% { transform: translateY(-80vh) scale(.8); opacity:0; }
+    }
+
+    /* confetti canvas full-screen top layer */
+    #confetti {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:4;
+    }
+
+    /* subtle sparkle overlay */
+    .sparkles {
+      position:fixed;
+      inset:0;
+      z-index:3;
+      pointer-events:none;
+      mix-blend-mode:screen;
+      opacity:0.55;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- decorative ribbons -->
+  <div class="ribbon top" aria-hidden="true"></div>
+  <div class="ribbon bottom" aria-hidden="true"></div>
+
+  <!-- confetti canvas -->
+  <canvas id="confetti" width="800" height="600" aria-hidden="true"></canvas>
+
+  <!-- sparkles (SVG overlay) -->
+  <svg class="sparkles" width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="60" cy="40" r="6" fill="url(#g1)" opacity="0.12"/>
+    <circle cx="700" cy="120" r="8" fill="url(#g1)" opacity="0.11"/>
+    <circle cx="420" cy="330" r="5" fill="url(#g1)" opacity="0.09"/>
+    <circle cx="180" cy="480" r="7" fill="url(#g1)" opacity="0.08"/>
+    <circle cx="720" cy="520" r="6" fill="url(#g1)" opacity="0.07"/>
+  </svg>
+
+  <main class="card" role="main" aria-label="Trang chúc mừng 20 tháng 11">
+    <section class="main">
+      <hgroup>
+        <h1 class="title">🌸 Chúc mừng Ngày Nhà Giáo Việt Nam 20/11</h1>
+        <p class="subtitle">Gửi cô/mẹ Hải — Lời chúc đổi màu & hiệu ứng đặc biệt</p>
+      </hgroup>
+
+      <div class="message" id="messageBox" aria-live="polite">
+        <div style="font-size:16px; color:#333; margin-bottom:12px;">
+          Con xin chúc <strong>cô/mẹ</strong>
+          <span id="dynamicWrap" class="dynamic" aria-hidden="true"></span>
+          <span id="cursor" style="display:inline-block;width:6px;height:22px;background:var(--accent-2);vertical-align:middle;margin-left:6px;border-radius:3px;opacity:1;"></span>
+          mỗi ngày! ❤️
+        </div>
+
+        <div style="color:#444; font-size:15px;">
+          Cảm ơn cô/mẹ vì tình yêu thương, sự tận tâm và những bài học quý giá dành cho chúng con. Chúc cô/mẹ luôn mạnh khỏe và luôn rạng rỡ như hôm nay!
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:18px; align-items:center; flex-wrap:wrap">
+        <button class="btn primary" id="btnToggleAuto">Tạm dừng xoay chữ</button>
+        <button class="btn ghost" id="btnConfetti">Bật Confetti</button>
+        <button class="btn ghost" id="btnHearts">Tặng trái tim</button>
+        <button class="btn ghost" id="btnManual">Đổi thủ công</button>
+      </div>
+
+    </section>
+
+    <aside class="visual" aria-hidden="false">
+    <div class="portrait" id="portrait" style="width:100%;height:100%;">
+        <img src="pic/lmao.png" 
+             alt="Ảnh cô/mẹ Hải"
+             style="
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                border-radius:20px;
+                box-shadow:0 8px 20px rgba(0,0,0,0.25);
+                animation: fadeIn 1.2s ease;
+             ">
+    </div>
+</aside>
+
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+</style>
+
+
+      <div class="controls" aria-hidden="false">
+        <button class="btn" id="btnPlayTone" title="Phát tiếng chuông nhỏ">🔔 Chuông</button>
+        <button class="btn" id="btnToggleSpark" title="Bật/tắt ánh lấp lánh">✨ Sparkles</button>
+        <button class="btn" id="btnColorCycle" title="Đổi màu chủ đạo">🎨 Đổi màu</button>
+      </div>
+
+      <div style="width:100%; margin-top:12px;">
+        <div style="font-size:13px; color:#444; text-align:center">Nhanh: <em id="currentState">Chạy</em></div>
+      </div>
+    </aside>
+  </main>
+
+<script>
+/* ============================
+   Configuration (chỉnh ở đây)
+   ============================ */
+const words = [
+  "xinh đẹp",
+  "hạnh phúc",
+  "thành công",
+  "may mắn",
+  "luôn nở nụ cười",
+  "tràn đầy năng lượng",
+  "được yêu thương",
+  "khỏe mạnh",
+  "vui tươi mỗi ngày",
+  "ưu tú và tận tâm"
+];
+
+let autoRotate = true;      // auto thay chữ
+let confettiOn = false;     // confetti mặc định tắt
+let sparklesOn = true;
+
+/* ============================
+   Typewriter + rotate logic
+   ============================ */
+const wrap = document.getElementById('dynamicWrap');
+const cursor = document.getElementById('cursor');
+const btnToggleAuto = document.getElementById('btnToggleAuto');
+const btnManual = document.getElementById('btnManual');
+const btnConfetti = document.getElementById('btnConfetti');
+const btnHearts = document.getElementById('btnHearts');
+const currentState = document.getElementById('currentState');
+
+let wIndex = 0;
+let charIndex = 0;
+let typing = true;
+let typingSpeed = 48; // ms per char
+let pauseBetween = 1500; // pause after full word
+
+function typeLoop(){
+  const word = words[wIndex];
+  if(typing) {
+    // type forward
+    if(charIndex < word.length) {
+      charIndex++;
+      wrap.textContent = word.slice(0, charIndex);
+      // color cycle subtle per word (derive from index)
+      wrap.style.color = `hsl(${(wIndex*37)%360} 85% 50%)`;
+      setTimeout(typeLoop, typingSpeed + Math.random()*30);
+    } else {
+      // done typing
+      setTimeout(()=>{
+        typing = false;
+        setTimeout(typeLoop, 80);
+      }, pauseBetween);
+    }
+  } else {
+    // deleting
+    if(charIndex > 0) {
+      charIndex--;
+      wrap.textContent = word.slice(0, charIndex);
+      setTimeout(typeLoop, typingSpeed/1.6 + Math.random()*20);
+    } else {
+      // move to next word
+      typing = true;
+      wIndex = (wIndex + 1) % words.length;
+      setTimeout(typeLoop, 180);
+    }
+  }
+}
+
+/* start typing only if autoRotate true */
+let autoInterval = null;
+function startAuto(){
+  if(autoInterval) return;
+  autoRotate = true;
+  btnToggleAuto.textContent = 'Tạm dừng xoay chữ';
+  currentState.textContent = 'Chạy';
+  // ensure typing loop started
+  if(!autoInterval){
+    // kick off typeLoop if not already
+    typeLoop();
+    // set an interval fallback to ensure rotate if typing paused
+    autoInterval = setInterval(()=> {
+      // no-op: typeLoop manages itself, interval used to track state
+    }, 5000);
+  }
+}
+function stopAuto(){
+  autoRotate = false;
+  btnToggleAuto.textContent = 'Bật xoay chữ';
+  currentState.textContent = 'Tạm dừng';
+  // stop the interval but keep current word visible
+  if(autoInterval){ clearInterval(autoInterval); autoInterval=null; }
+}
+
+/* toggle */
+btnToggleAuto.addEventListener('click', ()=>{
+  if(autoRotate) stopAuto(); else startAuto();
+});
+
+/* manual change */
+btnManual.addEventListener('click', ()=>{
+  // immediate jump to next word
+  wIndex = (wIndex+1) % words.length;
+  charIndex = 0;
+  typing = true;
+  // ensure it types the new word
+  wrap.textContent = "";
+  // briefly resume auto-typing if paused then pause again
+  typeLoop();
+});
+
+/* cursor blinking */
+setInterval(()=> {
+  cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+}, 520);
+
+/* initialize */
+startAuto();
+
+/* ============================
+   Floating hearts on demand
+   ============================ */
+btnHearts.addEventListener('click', createHeart);
+document.body.addEventListener('click', (e) => {
+  // create small heart where clicked if left-button and ctrl not pressed
+  if(e.target.closest('.btn')) return; // avoid when clicking UI buttons
+  if(e.button === 0) createHeart(e.clientX, e.clientY);
+});
+
+function createHeart(x = null, y = null){
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = (x === null ? (Math.random() * window.innerWidth) : x) + 'px';
+  heart.style.top = (y === null ? (window.innerHeight - 80) : y) + 'px';
+  heart.style.color = randomAccent();
+  heart.style.fontSize = (12 + Math.random()*14) + 'px';
+  heart.textContent = '❤️';
+  document.body.appendChild(heart);
+  setTimeout(()=> heart.remove(), 3800);
+}
+
+function randomAccent(){
+  const accents = ['#ff5fa2','#7a5cff','#ffb86b','#38d39f','#ff6b6b'];
+  return accents[Math.floor(Math.random()*accents.length)];
+}
+
+/* ============================
+   Confetti - simple canvas
+   ============================ */
+const confettiCanvas = document.getElementById('confetti');
+const ctx = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiRunning = false;
+
+// resize canvas
+function fitCanvas(){
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+fitCanvas();
+window.addEventListener('resize', fitCanvas);
+
+function makeConfettiBurst(count=80){
+  const w = confettiCanvas.width;
+  const h = confettiCanvas.height;
+  for(let i=0;i<count;i++){
+    confettiParticles.push({
+      x: Math.random()*w,
+      y: -20 - Math.random()*h*0.1,
+      vx: (Math.random()-0.5) * 6,
+      vy: 2 + Math.random()*5,
+      size: 6 + Math.random()*8,
+      angle: Math.random()*360,
+      spin: (Math.random()-0.5)*0.2,
+      color: randomAccent(),
+      ttl: 200 + Math.random()*200
+    });
+  }
+  if(!confettiRunning) runConfetti();
+}
+
+function runConfetti(){
+  confettiRunning = true;
+  function frame(){
+    ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+    for(let i=confettiParticles.length-1;i>=0;i--){
+      const p = confettiParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.06; // gravity
+      p.angle += p.spin;
+      p.ttl--;
+      // draw as rotated rectangle
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+      ctx.restore();
+      if(p.y > confettiCanvas.height + 50 || p.ttl < 0) confettiParticles.splice(i,1);
+    }
+    if(confettiParticles.length>0){
+      requestAnimationFrame(frame);
+    } else {
+      confettiRunning = false;
+      ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* toggle confetti */
+btnConfetti.addEventListener('click', ()=>{
+  confettiOn = !confettiOn;
+  btnConfetti.textContent = confettiOn ? 'Tắt Confetti' : 'Bật Confetti';
+  if(confettiOn) makeConfettiBurst(140);
+});
+
+/* also auto confetti when manual action performed */
+btnManual.addEventListener('click', ()=> {
+  if(!confettiOn) makeConfettiBurst(36);
+});
+
+/* ============================
+   Sparkles toggle (SVG visibility)
+   ============================ */
+const sparklesSVG = document.querySelector('.sparkles');
+document.getElementById('btnToggleSpark').addEventListener('click', ()=>{
+  sparklesOn = !sparklesOn;
+  sparklesSVG.style.display = sparklesOn ? 'block' : 'none';
+  document.getElementById('btnToggleSpark').textContent = sparklesOn ? '✨ Sparkles' : '✨ Tắt Sparkles';
+});
+
+/* ============================
+   Play small chime via WebAudio
+   ============================ */
+const btnPlayTone = document.getElementById('btnPlayTone');
+btnPlayTone.addEventListener('click', ()=>playChime());
+
+function playChime(){
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(520, ctx.currentTime);
+    g.gain.setValueAtTime(0.0001, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+    o.connect(g); g.connect(ctx.destination);
+    o.start();
+    // frequency glide
+    o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.28);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.4);
+    setTimeout(()=>{ o.stop(); ctx.close(); }, 1500);
+  } catch(e){
+    console.warn('AudioContext not available', e);
+  }
+}
+
+/* ============================
+   Color cycling for accents
+   ============================ */
+const btnColorCycle = document.getElementById('btnColorCycle');
+btnColorCycle.addEventListener('click', ()=>{
+  // rotate CSS variables for accent colors
+  const root = document.documentElement;
+  const cols = [
+    ['#ff5fa2','#7a5cff','#ffb86b','#38d39f'],
+    ['#6ee7b7','#60a5fa','#f472b6','#ffd86b'],
+    ['#ff7ab6','#6a5cff','#4dd0e1','#ffce7b'],
+    ['#f66d6d','#9f7aea','#fbbf24','#34d399']
+  ];
+  const pick = cols[Math.floor(Math.random()*cols.length)];
+  root.style.setProperty('--accent-1', pick[0]);
+  root.style.setProperty('--accent-2', pick[1]);
+  root.style.setProperty('--accent-3', pick[2]);
+  root.style.setProperty('--accent-4', pick[3]);
+  // flash confetti small
+  makeConfettiBurst(26);
+});
+
+/* ============================
+   small polish: when words array changed or on focus
+   ============================ */
+// ensure accessibility: set initial visible text
+wrap.textContent = words[0];
+wrap.style.color = 'var(--accent-1)';
+
+/* Optional: trigger soft confetti when page loads once */
+window.addEventListener('load', ()=>{
+  setTimeout(()=> makeConfettiBurst(36), 650);
+});
+
+/* ============================
+   END
+   ============================ */
+</script>
+
+</body>
+</html>
